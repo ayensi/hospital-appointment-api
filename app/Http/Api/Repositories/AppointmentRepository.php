@@ -146,7 +146,6 @@ class AppointmentRepository
         }
     }
 
-
     public function checkDateAvailability($date, $hourId, $doctorId)
     {
         $appointment = Appointment::where([
