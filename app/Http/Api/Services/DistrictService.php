@@ -39,9 +39,8 @@ class DistrictService implements IDistrictService
     {
         return $this->districtRepository->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->districtRepository->update($request,$id);
+        return $this->districtRepository->update($request, $id);
     }
-
 }

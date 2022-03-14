@@ -6,7 +6,6 @@ use App\Http\Api\Contracts\IHospitalService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class HospitalController extends Controller
 {
     protected $hospitalService;
@@ -40,8 +39,8 @@ class HospitalController extends Controller
     {
         return $this->hospitalService->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->hospitalService->update($request,$id);
+        return $this->hospitalService->update($request, $id);
     }
 }

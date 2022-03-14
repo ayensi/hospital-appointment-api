@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class ClinicService implements IClinicService
 {
-
     private $clinicRepository;
 
     public function __construct(ClinicRepository $clinicRepository)
@@ -36,9 +35,8 @@ class ClinicService implements IClinicService
     {
         return $this->clinicRepository->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->clinicRepository->update($request,$id);
+        return $this->clinicRepository->update($request, $id);
     }
-
 }

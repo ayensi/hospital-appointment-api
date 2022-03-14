@@ -6,10 +6,8 @@ use App\Http\Api\Contracts\IUserService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class UserController extends Controller
 {
-
     private $userService;
 
     public function __construct(IUserService $userService)
@@ -24,7 +22,8 @@ class UserController extends Controller
     {
         return $this->userService->register($request);
     }
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         return $this->userService->logout($request);
     }
 }

@@ -43,9 +43,8 @@ class DoctorService implements IDoctorService
     {
         return $this->doctorRepository->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->doctorRepository->update($request,$id);
+        return $this->doctorRepository->update($request, $id);
     }
-
 }

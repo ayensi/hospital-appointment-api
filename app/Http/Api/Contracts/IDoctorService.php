@@ -13,5 +13,5 @@ interface IDoctorService
     public function getByName($name);
     public function store(Request $request);
     public function destroy($id);
-    public function update(Request $request,$id);
+    public function update(Request $request, $id);
 }

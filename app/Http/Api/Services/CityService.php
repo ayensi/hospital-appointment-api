@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CityService implements ICityService
 {
-
     private $cityRepository;
 
     public function __construct(CityRepository $cityRepository)
@@ -36,9 +35,8 @@ class CityService implements ICityService
     {
         return $this->cityRepository->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->cityRepository->update($request,$id);
+        return $this->cityRepository->update($request, $id);
     }
-
 }

@@ -4,7 +4,6 @@ namespace App\Http\Api\Services;
 
 use Illuminate\Http\Request;
 
-
 class DateFormat
 {
     public static function formatDate($date)

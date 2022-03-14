@@ -40,9 +40,8 @@ class HospitalService implements IHospitalService
     {
         return $this->hospitalRepository->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->hospitalRepository->update($request,$id);
+        return $this->hospitalRepository->update($request, $id);
     }
-
 }

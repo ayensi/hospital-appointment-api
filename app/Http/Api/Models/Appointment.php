@@ -19,13 +19,16 @@ class Appointment extends Model
         'is_completed'
     ];
 
-    public function doctor(){
+    public function doctor()
+    {
         return $this->belongsTo(Doctor::class);
     }
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function hour(){
+    public function hour()
+    {
         return $this->belongsTo(Hour::class);
     }
 }

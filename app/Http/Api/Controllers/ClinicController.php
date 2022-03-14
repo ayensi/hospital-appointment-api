@@ -2,11 +2,9 @@
 
 namespace App\Http\Api\Controllers;
 
-
 use App\Http\Api\Contracts\IClinicService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 
 class ClinicController extends Controller
 {
@@ -37,8 +35,8 @@ class ClinicController extends Controller
     {
         return $this->clinicService->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->clinicService->update($request,$id);
+        return $this->clinicService->update($request, $id);
     }
 }

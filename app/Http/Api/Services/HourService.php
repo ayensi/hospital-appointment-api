@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class HourService implements IHourService
 {
-
     private $hourRepository;
 
     public function __construct(HourRepository $hourRepository)
@@ -36,9 +35,8 @@ class HourService implements IHourService
     {
         return $this->hourRepository->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->hourRepository->update($request,$id);
+        return $this->hourRepository->update($request, $id);
     }
-
 }

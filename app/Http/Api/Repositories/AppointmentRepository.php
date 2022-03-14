@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Api\Repositories;
 
 use App\Http\Api\Models\Appointment;
@@ -17,7 +16,7 @@ class AppointmentRepository
     public function get()
     {
         $appointments = Appointment::all();
-        return response()->json($appointments,200);
+        return response()->json($appointments, 200);
     }
     public function store(Request $request)
     {
@@ -47,15 +46,15 @@ class AppointmentRepository
     public function getByDoctorId($id)
     {
         $appointments = Appointment::all()
-            ->where('doctor_id',$id);
-        return response()->json($appointments,200);
+            ->where('doctor_id', $id);
+        return response()->json($appointments, 200);
     }
 
     public function getByUserId($id)
     {
         $appointments = Appointment::all()
-            ->where('user_id',$id);
-        return response()->json($appointments,200);
+            ->where('user_id', $id);
+        return response()->json($appointments, 200);
     }
 
     public function getByDate($hourId, $appointmentDate)
@@ -63,30 +62,30 @@ class AppointmentRepository
         $appointment_date = DateFormat::formatDate($appointmentDate);
 
         $appointments = Appointment::all()
-            ->where('hour_id',$hourId)
-        ->where('appointment_date',$appointment_date);
-        return response()->json($appointments,200);
+            ->where('hour_id', $hourId)
+        ->where('appointment_date', $appointment_date);
+        return response()->json($appointments, 200);
     }
 
     public function getDueAppointments()
     {
         $appointments = Appointment::all()
-            ->where('is_pastDue',true);
-        return response()->json($appointments,200);
+            ->where('is_pastDue', true);
+        return response()->json($appointments, 200);
     }
 
     public function getCompletedAppointments()
     {
         $appointments = Appointment::all()
-            ->where('is_completed',true);
-        return response()->json($appointments,200);
+            ->where('is_completed', true);
+        return response()->json($appointments, 200);
     }
 
     public function getCancelledAppointments()
     {
         $appointments = Appointment::all()
-            ->where('is_cancelled',true);
-        return response()->json($appointments,200);
+            ->where('is_cancelled', true);
+        return response()->json($appointments, 200);
     }
 
     public function getAvailableAppointmentsByDoctorId(Request $request)
@@ -99,25 +98,22 @@ class AppointmentRepository
         Validation::validate($request, $rules);
         $appointments = Appointment::all()
             ->where('appointment_date', $request->appointment_date)
-        ->where('doctor_id',$request->doctor_id);
-        $hoursNotAvailable=array();
-        $i=0;
+        ->where('doctor_id', $request->doctor_id);
+        $hoursNotAvailable = array();
+        $i = 0;
         foreach ($appointments as $appointment) {
             $hoursNotAvailable[$i] = $appointment->hour_id;
             $i++;
         }
 
-        $hours = Hour::all()->whereNotIn('id',$hoursNotAvailable);
-        $hours = $this->getAvailableHours($hours,$request->appointment_date);
-        if($hours){
-            return response()->json($hours,200);
-        }
-        else
-        {
+        $hours = Hour::all()->whereNotIn('id', $hoursNotAvailable);
+        $hours = $this->getAvailableHours($hours, $request->appointment_date);
+        if ($hours) {
+            return response()->json($hours, 200);
+        } else {
             return response()->json([
                 'message' => 'This date is past.',
-            ],403);
-
+            ], 403);
         }
     }
 
@@ -138,35 +134,32 @@ class AppointmentRepository
     public function destroy($id)
     {
         $appointment = Appointment::find($id);
-        if ($appointment)
-        {
+        if ($appointment) {
             Appointment::destroy($id);
             return response()->json([
                 'message' => 'Successfully deleted.'
-            ],200);
-        }
-        else
-        {
+            ], 200);
+        } else {
             return response()->json([
                 'message' => 'Could not find the appointment.'
-            ],404);
+            ], 404);
         }
     }
 
 
-    public function checkDateAvailability($date,$hourId,$doctorId)
+    public function checkDateAvailability($date, $hourId, $doctorId)
     {
         $appointment = Appointment::where([
-            'doctor_id'=>$doctorId,
-            'appointment_date'=>$date,
-            'hour_id'=>$hourId,
+            'doctor_id' => $doctorId,
+            'appointment_date' => $date,
+            'hour_id' => $hourId,
         ])->get();
-        if(!$appointment->isEmpty()){
+        if (!$appointment->isEmpty()) {
             return false;
         }
         return true;
     }
-    public function getAvailableHours($hours,$date)
+    public function getAvailableHours($hours, $date)
     {
         //Get current date and wanted appointment day
         $currentDate = Carbon::now();
@@ -176,23 +169,19 @@ class AppointmentRepository
         //Get current hour and minute and format it to integer to compare
 
         $current = Carbon::now()->format('H:i');
-        $current = str_replace( ':', '', $current);
+        $current = str_replace(':', '', $current);
         $current = (int) $current;
 
-        if ($date->lt($currentDate)){
+        if ($date->lt($currentDate)) {
             return null;
         }
         //If the wanted day and the present day is same
-        if ($diff==0)
-        {
-
-            foreach ($hours as $key => $hour)
-            {
+        if ($diff == 0) {
+            foreach ($hours as $key => $hour) {
                 $tmp = $hour->name;
-                $tmp = str_replace( ':', '', $tmp);
+                $tmp = str_replace(':', '', $tmp);
                 $tmp = (int) $tmp;
-                if ($current >= $tmp)
-                {
+                if ($current >= $tmp) {
                     unset($hours[$key]);
                 }
             }
@@ -200,8 +189,7 @@ class AppointmentRepository
             return $hours;
         }
         //If the date is greater then today return available hours
-        else
-        {
+        else {
             return $hours;
         }
     }

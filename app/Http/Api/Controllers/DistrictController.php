@@ -6,7 +6,6 @@ use App\Http\Api\Contracts\IDistrictService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class DistrictController extends Controller
 {
     protected $districtService;
@@ -40,8 +39,8 @@ class DistrictController extends Controller
     {
         return $this->districtService->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->districtService->update($request,$id);
+        return $this->districtService->update($request, $id);
     }
 }

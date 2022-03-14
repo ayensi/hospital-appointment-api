@@ -2,7 +2,6 @@
 
 namespace App\Http\Api\Services;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,5 +11,4 @@ class Validation
     {
         $request->validate($rules);
     }
-
 }

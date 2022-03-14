@@ -10,7 +10,7 @@ interface IAppointmentService
     public function store(Request $request);
     public function getByDoctorId($id);
     public function getByUserId($id);
-    public function getByDate($hourId,$appointmentDate);
+    public function getByDate($hourId, $appointmentDate);
     public function getDueAppointments();
     public function getCompletedAppointments();
     public function getCancelledAppointments();
@@ -18,5 +18,5 @@ interface IAppointmentService
     public function cancel($id);
     public function complete($id);
     public function destroy($id);
-    public function checkDateAvailability($date,$hourId,$doctorId);
+    public function checkDateAvailability($date, $hourId, $doctorId);
 }

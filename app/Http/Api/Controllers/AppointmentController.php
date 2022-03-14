@@ -6,7 +6,6 @@ use App\Http\Api\Contracts\IAppointmentService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class AppointmentController extends Controller
 {
     private $appointmentService;
@@ -16,7 +15,8 @@ class AppointmentController extends Controller
         $this->appointmentService = $appointmentService;
     }
 
-    public function get(){
+    public function get()
+    {
         return $this->appointmentService->get();
     }
 
@@ -24,7 +24,8 @@ class AppointmentController extends Controller
     {
         return $this->appointmentService->store($request);
     }
-    public function getAvailableAppointmentsByDoctorId(Request $request){
+    public function getAvailableAppointmentsByDoctorId(Request $request)
+    {
         return $this->appointmentService->getAvailableAppointmentsByDoctorId($request);
     }
 
@@ -52,5 +53,4 @@ class AppointmentController extends Controller
     {
         return $this->appointmentService->getCompletedAppointments();
     }
-
 }

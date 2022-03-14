@@ -2,11 +2,9 @@
 
 namespace App\Http\Api\Controllers;
 
-
 use App\Http\Api\Contracts\IHourService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 
 class HourController extends Controller
 {
@@ -37,8 +35,8 @@ class HourController extends Controller
     {
         return $this->hourService->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->hourService->update($request,$id);
+        return $this->hourService->update($request, $id);
     }
 }

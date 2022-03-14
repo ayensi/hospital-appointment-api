@@ -6,7 +6,6 @@ use App\Http\Api\Contracts\ICityService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class CityController extends Controller
 {
     protected $cityService;
@@ -36,8 +35,8 @@ class CityController extends Controller
     {
         return $this->cityService->destroy($id);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        return $this->cityService->update($request,$id);
+        return $this->cityService->update($request, $id);
     }
 }

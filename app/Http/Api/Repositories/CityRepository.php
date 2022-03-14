@@ -10,54 +10,53 @@ use Illuminate\Support\Facades\Validator;
 
 class CityRepository
 {
-    public function get(){
+    public function get()
+    {
         $cities = City::all();
-        return response()->json($cities,200);
+        return response()->json($cities, 200);
     }
-    public function getById($id){
-        $cities = City::all()->where('id',$id);
-        return response()->json($cities,200);
+    public function getById($id)
+    {
+        $cities = City::all()->where('id', $id);
+        return response()->json($cities, 200);
     }
-    public function getByName($name){
-        $cities = City::where('name','like','%'.$name.'%')->get();
-        return response()->json($cities,200);
+    public function getByName($name)
+    {
+        $cities = City::where('name', 'like', '%' . $name . '%')->get();
+        return response()->json($cities, 200);
     }
     public function store(Request $request)
     {
         $rules = [
             'name' => ['required'],
         ];
-        Validation::validate($request,$rules);
+        Validation::validate($request, $rules);
         $city = City::create($request->all());
-        return response()->json($city,200);
+        return response()->json($city, 200);
     }
     public function destroy($id)
     {
         $city = City::find($id);
-        if($city)
-        {
+        if ($city) {
             City::destroy($id);
             return response()->json([
-                'message'=>'Successfully deleted.'
-            ],200);
-        }
-        else
-        {
+                'message' => 'Successfully deleted.'
+            ], 200);
+        } else {
             return response()->json([
-                'message'=>'Could not find the district.'
-            ],404);
+                'message' => 'Could not find the district.'
+            ], 404);
         }
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $city = City::find($id);
         $rules = [
             'name' => ['required'],
         ];
 
-        if($city)
-        {
-            Validation::validate($request,$rules);
+        if ($city) {
+            Validation::validate($request, $rules);
 
             City::where('id', $id)
                 ->update([
@@ -66,15 +65,13 @@ class CityRepository
             $city = City::find($id);
 
             return response()->json([
-                'data'=>$city,
-                'message'=>'Successfully updated.'
-            ],200);
-        }
-        else
-        {
+                'data' => $city,
+                'message' => 'Successfully updated.'
+            ], 200);
+        } else {
             return response()->json([
-                'message'=>'Could not find the district.'
-            ],404);
+                'message' => 'Could not find the district.'
+            ], 404);
         }
     }
 }

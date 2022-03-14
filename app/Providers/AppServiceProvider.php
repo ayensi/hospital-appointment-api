@@ -49,6 +49,5 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IClinicService::class, ClinicService::class);
         $this->app->bind(IDoctorService::class, DoctorService::class);
         $this->app->bind(IAppointmentService::class, AppointmentService::class);
-
     }
 }

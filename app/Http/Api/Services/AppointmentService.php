@@ -18,7 +18,6 @@ class AppointmentService implements IAppointmentService
     public function get()
     {
         return $this->appointmentRepository->get();
-
     }
 
     public function store(Request $request)
@@ -76,8 +75,8 @@ class AppointmentService implements IAppointmentService
         return $this->appointmentRepository->destroy($id);
     }
 
-    public function checkDateAvailability($date,$hourId,$doctorId)
+    public function checkDateAvailability($date, $hourId, $doctorId)
     {
-        return $this->appointmentRepository->checkDateAvailability($date,$hourId,$doctorId);
+        return $this->appointmentRepository->checkDateAvailability($date, $hourId, $doctorId);
     }
 }

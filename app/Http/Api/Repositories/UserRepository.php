@@ -29,7 +29,6 @@ class UserRepository
             'token_type' => 'Bearer',
             'message' => 'Logged in',
         ]);
-
     }
 
     public function register(Request $request)
@@ -39,14 +38,14 @@ class UserRepository
             'email' => ['required', 'email', 'unique:users'],
             'phone' => ['required','unique:users'],
             'social_security_number' => ['required','unique:users'],
-            'name'=> ['required'],
+            'name' => ['required'],
             'password' => ['required'],
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'message' => $validator->errors()->first(),
-            ],400);
+            ], 400);
         } else {
             $user = User::create([
                 'name' => $request['name'],
@@ -60,10 +59,10 @@ class UserRepository
             return response()->json([
                 'message' => 'Registered',
             ]);
-
         }
     }
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->user()->tokens()->delete();
         return response()->json([
             'message' => 'Logged out.',
